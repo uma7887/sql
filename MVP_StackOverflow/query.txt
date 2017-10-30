@@ -1,0 +1,31 @@
+/*to create database*/
+
+CREATE DATABASE Project_Stack_Overflow;
+
+/*to drop database*/
+
+DROP DATABASE Project_Stack_Overflow;
+
+
+***********************************
+
+
+/*to create parent table*/ 
+
+CREATE TABLE dbo.LoginUserDetail
+   (UserID int IDENTITY(1,1) PRIMARY KEY NOT NULL,  
+    UserName varchar(225) NOT NULL,  
+    UserEmailAddress varchar(225) NOT NULL UNIQUE,  
+	UserPassword varchar(225) NOT NULL,  
+    isActive tinyint DEFAULT((1)) NOT NULL);  
+
+	
+CREATE TABLE dbo.AboutUser (
+	AboutUserID int IDENTITY(1,1) PRIMARY KEY NOT NULL,  
+    UserLanguagesKnown varchar(225) NULL,  
+    UserDOB date NULL, 
+	UserID int NOT NULL,
+	CONSTRAINT FK_UserUserID
+	  FOREIGN KEY (UserID)
+	  REFERENCES LoginUserDetail (UserID)
+	);
